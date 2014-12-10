@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% set active_page = "import" %}
+
+{% block head_scripts %}
+  {{super()}}
+  <script type="text/javascript" src="static/js/jquery.jcarousel.min.js"></script>
+  <script type="text/javascript" src="static/js/jquery.pikachoose.js"></script>
+  <script type="text/javascript" src="static/js/jquery.pikachoose.min.js"></script>
+  <script type="text/javascript" src="static/js/jquery.touchwipe.min.js"></script>
+  <script type="text/javascript" src="static/js/flow.js"></script>
+  <script type="text/javascript" src="static/js/flow.min.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="static/css/simple.css"/>
+
+{% endblock head_scripts %}
+
+{% block body_content%}
+  </br>
+  </br>
+  </br>
+  </br>
+  <script>
+    $(document).ready(function() {
+    
+      $( "#imgList").PikaChoose({autoPlay : false});
+      
+      //all of the below code lovingly stolen from the MASIR crew
+      var flow = new Flow({
+        target: '_upload',
+        // 1 for serial debugging, may be higher for production
+        simultaneousUploads: 1
+      });
+      if (!flow.support)
+      {
+          alert_error("Flow is not supported in current browser");
+          return;
+      }
+
+      flow.assignBrowse($("#img_impt"),false,true);
+      
+      flow.on("error", function(message, file) {
+              alert_error("[Flow] ERROR: (" + file.name + ") " + message);
+              return true;
+      });
+      
+      //flow.on("filesSubmitted", function(array, event) {
+          //alert_info("[Flow] Uploading files");
+      //    flow.upload();
+      //});
+
+      flow.on("fileSuccess", function (file, message) {
+          alert_success("[Flow] Success uploading file '" + file.name + ": "
+                  + message);
+          delete ffid_fpi_map[file.uniqueIdentifier];
+      });
+
+      flow.on("fileError", function(file, message) {
+          alert_error("[Flow] Error uploading file '" + file.name + ": "
+                  + message);
+          delete ffid_fpi_map[file.uniqueIdentifier];
+      });
+      //$( "#img_impt" ).click(function() {
+      // flow.
+      //});
+    });
+  </script>
+  <div class="row">
+    <div class="pikachoose col-md-5" >
+      <ul class="col-md-9" id='imgList'>
+        <li><img src="/static/img/login_images.jpg"></li>
+        <li><img src="/static/img/test.jpg"></li>
+        <li><img src="/static/img/test.jpg"></li>
+        <li><img src="/static/img/test.jpg"></li>
+      </ul>
+    </div>
+    <div class="row col-md-6" >
+        <button class="col-md-4" id="img_impt">Import Image</button>
+        <div class="col-md-2"></div>
+        <button class="col-md-4">Import Video</button>
+    </div>
+
+  </div>
+{% endblock body_content %}

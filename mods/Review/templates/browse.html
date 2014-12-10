@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% set active_page = "browse" %}
+
+{% block body_content %}
+
+<script>
+  $(function() {
+    $( "#pat_menu" ).menu ({
+      select: function(event,data){
+        console.log(event.toElement.innerText);
+        pat_info = "this is patient information"
+      }
+    });
+  });
+</script>
+</br>
+</br>
+<h1>Browse through patient listing</h1>
+<div class="row">
+
+  <ul class="col-md-2" id="pat_menu">
+    <li><a href="#">Carter, David JR</a></li>
+    <li>Kane, Robert</li>
+    <li>Smith, Carl</li>
+    <li>Tully, Roberta</li>
+  </ul>
+  <label class="col-md-4"><script>document.write(pat_info)</script></label>
+  <div class="col-md-4">
+    <button class="col-md-3">Select Patient</button>
+    <div class="col-md-3"></div>
+    <button class="col-md-3">Cancel</button>
+  </div>
+</div>
+{% endblock body_content %}
