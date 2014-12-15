@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% set active_page = "review" %}
+
+{% block head_scripts %}
+  {{super()}}
+  <script type="text/javascript" src="static/js/canvasjs.min.js"></script>
+  <script type="text/javascript" src="static/js/twoface.js"></script>
+{% endblock head_scripts %}
+
+
+{% block body_content %}
+</br>
+</br>
+<h1>Comparison of Registered Images</h1>
+<div id="img_compare"  class="container-fluid"></div>     
+
+<script>
+var twoface = TwoFace("img_compare", 625,525);
+twoface.add("static/img/aligned_55_2014_07_01_BSELL_80311_OD_013_mapped.jpg");
+twoface.add("static/img/aligned_42_OD_80311_2793_SLOwithBScanMap_mapped.jpg");
+</script>
+
+{% endblock body_content %}

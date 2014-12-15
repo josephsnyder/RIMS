@@ -1,1 +1,1 @@
-from .BrowseMod import BrowseMod
+from .ReviewMod import ReviewMod

@@ -4,15 +4,15 @@ import os.path as osp
 
 script_dir = osp.dirname(osp.abspath(__file__))
 
-class BrowseMod(flask.Blueprint):
+class ReviewMod(flask.Blueprint):
 
   def __init__(self,parent_app):
-    super(BrowseMod, self).__init__(
-            'browse', __name__,
+    super(ReviewMod, self).__init__(
+            'Review', __name__,
             template_folder=osp.join(script_dir, 'templates')
         )
-    @self.route('/browse', methods=['get'])
+    @self.route('/review', methods=['get'])
     def login():
     # Render the login page, then continue on to a previously requested
     # page, or the home page.
-      return flask.render_template('browse.html')
+      return flask.render_template('review.html')
