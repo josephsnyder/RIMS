@@ -64,13 +64,23 @@
       //});
     });
   </script>
+  {% set imgLoc = [
+  '/static/img/2014_06_02_BSELL_61649_OD_009.JPG',
+  '/static/img/2014_06_02_BSELL_61649_OS_009.JPG',
+  '/static/img/aligned_002_2014_04_09_BSELL_80311_OD_007_mapped.jpg',
+  '/static/img/aligned_42_OD_80311_2793_SLOwithBScanMap_mapped.jpg',
+  '/static/img/aligned_55_2014_07_01_BSELL_80311_OD_013_mapped.jpg',
+  '/static/img/aligned_132_20140710_80311_Image_16_OD_mapped.jpg',
+  '/static/img/2014_06_05_BSELL_61649_OD_001.JPG',
+  '/static/img/2014_06_05_BSELL_61649_OD_010.JPG'
+  ] -%}
+  
   <div class="row">
     <div class="pikachoose col-md-5" >
       <ul class="col-md-9" id='imgList'>
-        <li><img src="/static/img/login_images.jpg"></li>
-        <li><img src="/static/img/test.jpg"></li>
-        <li><img src="/static/img/test.jpg"></li>
-        <li><img src="/static/img/test.jpg"></li>
+      {% for path in imgLoc %}
+        <li><img src={{ path|escape }}></li>
+      {% endfor %}
       </ul>
     </div>
     <div class="row col-md-6" >

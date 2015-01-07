@@ -1,12 +1,29 @@
 {% extends "base.html" %}
 {% set active_page = "home" %}
+{% block head_scripts %}
+  {{super()}}
+  <script type="text/javascript" src="static/js/isotope.pkgd.min.js"></script>
+{% endblock head_scripts %}
 
 {% block body_content %}
   <!-- this is a comment too -->
   <div class="container-fluid">
+
     </br>
     </br>
     </br>
-    <h4>AFRL SBIR</h4>
+    <h4>AFRL Retinal Image SBIR</h4>
+
   </div>
+  <div id="mosaic-cont">
+    <img class="blah mosaic3" src="static/img/wFOV.png">
+ <!-- <script>
+    $(document).ready(function() {
+	    $(window).load(function() {
+        IsoContainer = $('#mosaic-cont');
+        IsoContainer.isotope({
+          layoutMode: 'masonry'});
+       });
+     });
+  </script> -->
 {% endblock body_content %}

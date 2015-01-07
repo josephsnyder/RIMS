@@ -10,8 +10,8 @@ a{color:white;}
 	-moz-box-shadow: 5px 5px 2px #888;-webkit-box-shadow: 5px 5px 2px #888;box-shadow: 5px 5px 2px #888;}
 	
 	/*if you change the padding on pika-stage you must adjust the top left of this to match! */
-	.pika-stage .main-image {position: absolute; top: 0px; left: 0px;}
-	.pika-stage .pika-aniwrap{position: absolute; top: 0px; left: 0px;}
+	/*.pika-stage .main-image {position: absolute; top: 0px; left: 0px;}
+	.pika-stage .pika-aniwrap{position: absolute; top: 0px; left: 0px;}*/
 	.pika-stage .pika-ani {position:relative;display: none;z-index:2;margin:0 auto;}
 	.pika-stage img {border:0;height:100%;}
 

@@ -5,7 +5,7 @@ a{color:white;}
 
 .pika-image {position: relative; height: 340px; width: 500px;}
 	/*position image holders */
-	.pika-image .animation, .pika-image .main-image {position: absolute; top: 0px; left: 0px;}
+	/*.pika-image .animation, .pika-image .main-image {position: absolute; top: 0px; left: 0px;}*/
 	.pika-image .animation {display: none;z-index:2;}
 	.pika-image img {border:0;}
 

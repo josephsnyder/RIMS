@@ -44,6 +44,10 @@ class RIMSApp(flask.Flask):
     from mods.Review import ReviewMod
     self.module_review = ReviewMod(self)
     self.register_blueprint(self.module_review)
+    
+    from mods.Register import RegisterMod
+    self.module_register = RegisterMod(self)
+    self.register_blueprint(self.module_register)
 
     #self._log.debug("Importing Search module")
     #from .mods.search import SearchMod

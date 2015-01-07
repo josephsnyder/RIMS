@@ -13,11 +13,20 @@
 </br>
 <h1>Comparison of Registered Images</h1>
 <div id="img_compare"  class="container-fluid"></div>     
+</br>
+</br>
+</br>
+</br>
+<div id="img_compare2"  class="container-fluid"></div>     
 
 <script>
 var twoface = TwoFace("img_compare", 625,525);
 twoface.add("static/img/aligned_55_2014_07_01_BSELL_80311_OD_013_mapped.jpg");
 twoface.add("static/img/aligned_42_OD_80311_2793_SLOwithBScanMap_mapped.jpg");
+
+var twoface2 = TwoFace("img_compare2", 1000,700);
+twoface2.add("static/img/aligned_002_2014_04_09_BSELL_80311_OD_007_mapped.jpg");
+twoface2.add("static/img/aligned_132_20140710_80311_Image_16_OD_mapped.jpg");
 </script>
 
 {% endblock body_content %}

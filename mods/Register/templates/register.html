@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% set active_page = "register" %}
+
+{% block head_scripts %}
+  {{super()}}
+  <script type="text/javascript" src="static/js/isotope.pkgd.min.js"></script>
+{% endblock head_scripts %}
+
+{% block body_content %}
+  </br>
+</br>
+</br>
+</br>
+<div class='row' id="selectSort">
+<button class="button col-md-1" id="swap" sortvalue="fundus">Fundus Sort</button>
+<button class="button col-md-1" id="swap2" sortvalue="imgType">Type Sort</button>
+<button class="button col-md-1" id="swap3" sortvalue="random">Random</button>
+<button class="button col-md-1" id="swap4" sortvalue="">Default</button>
+</div>
+<div id="mosaic-cont" class='col-md-10'>
+  <img class="blah mosaic" fundus="yes" imgType='hyper' src="static/img/aligned_55_2014_07_01_BSELL_80311_OD_013_mapped.jpg">
+  <img class="blah mosaic" fundus="yes" imgType='IR' src="static/img/aligned_42_OD_80311_2793_SLOwithBScanMap_mapped.jpg">
+  <img class="blah mosaic" fundus="yes" imgType='IR' src="/static/img/2014_06_02_BSELL_61649_OD_009.JPG">
+  <img class="blah mosaic" fundus="yes" imgType='normal' src='/static/img/2014_06_02_BSELL_61649_OS_009.JPG'>
+  <img class="blah mosaic" fundus="no" imgType='multi' src='/static/img/aligned_002_2014_04_09_BSELL_80311_OD_007_mapped.jpg'>
+  <img class="blah mosaic" fundus="no" imgType='normal' src='/static/img/aligned_132_20140710_80311_Image_16_OD_mapped.jpg'>
+  <img class="blah mosaic" fundus="yes" imgType='IR' src='/static/img/2014_06_05_BSELL_61649_OD_001.JPG'>
+  <img class="blah mosaic" fundus="no" imgType='normal' src='/static/img/2014_06_05_BSELL_61649_OD_010.JPG'>
+  </div>
+<script>
+  $(document).ready(function() {
+    clickedItems = []
+
+    $(window).load(function() {
+      IsoContainer = $('#mosaic-cont');
+      IsoContainer.isotope({
+        //layoutMode: 'masonry',
+        getSortData: {
+          fundus:'[fundus]',
+          imgType:'[imgType]'}
+      });
+       
+    $('#selectSort').on('click','button', function () {
+      console.log('blah')
+      IsoContainer.isotope({sortBy:$(this).attr('sortvalue')});
+    });
+    
+  IsoContainer.on('click','.mosaic', function() {
+    $( this ).toggleClass('mosaic2');
+    if (clickedItems.length + 1 > 2) {
+      clickedItems[0].toggleClass('mosaic2');
+      clickedItems.shift();
+      };
+    console.log(clickedItems);
+    clickedItems.push($(this));
+
+  });
+  
+    });
+
+  });
+</script>
+<button class="button" id="startReg">register</button>
+<script>
+    $('#startReg').on('click', function () {
+      if (clickedItems.length == 2) {
+        console.log(clickedItems[0]);
+      }
+    });
+</script>
+{% endblock body_content %}
