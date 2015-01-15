@@ -3,69 +3,45 @@
 
 {% block head_scripts %}
   {{super()}}
-  <script type="text/javascript" src="static/js/isotope.pkgd.min.js"></script>
+  <script type="text/javascript" src="static/js/jquery.jcarousel.min.js"></script>
+  <script type="text/javascript" src="static/js/jquery.pikachoose.js"></script>
+  <script type="text/javascript" src="static/js/jquery.pikachoose.min.js"></script>
+  <script type="text/javascript" src="static/js/jquery.touchwipe.min.js"></script>
+  <script type="text/javascript" src="static/js/flow.js"></script>
+  <script type="text/javascript" src="static/js/flow.min.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="static/css/simple.css"/>
+
 {% endblock head_scripts %}
 
-{% block body_content %}
+{% block body_content%}
   </br>
-</br>
-</br>
-</br>
-<div class='row' id="selectSort">
-<button class="button col-md-1" id="swap" sortvalue="fundus">Fundus Sort</button>
-<button class="button col-md-1" id="swap2" sortvalue="imgType">Type Sort</button>
-<button class="button col-md-1" id="swap3" sortvalue="random">Random</button>
-<button class="button col-md-1" id="swap4" sortvalue="">Default</button>
-</div>
-<div id="mosaic-cont" class='col-md-10'>
-  <img class="blah mosaic" fundus="yes" imgType='hyper' src="static/img/aligned_55_2014_07_01_BSELL_80311_OD_013_mapped.jpg">
-  <img class="blah mosaic" fundus="yes" imgType='IR' src="static/img/aligned_42_OD_80311_2793_SLOwithBScanMap_mapped.jpg">
-  <img class="blah mosaic" fundus="yes" imgType='IR' src="/static/img/2014_06_02_BSELL_61649_OD_009.JPG">
-  <img class="blah mosaic" fundus="yes" imgType='normal' src='/static/img/2014_06_02_BSELL_61649_OS_009.JPG'>
-  <img class="blah mosaic" fundus="no" imgType='multi' src='/static/img/aligned_002_2014_04_09_BSELL_80311_OD_007_mapped.jpg'>
-  <img class="blah mosaic" fundus="no" imgType='normal' src='/static/img/aligned_132_20140710_80311_Image_16_OD_mapped.jpg'>
-  <img class="blah mosaic" fundus="yes" imgType='IR' src='/static/img/2014_06_05_BSELL_61649_OD_001.JPG'>
-  <img class="blah mosaic" fundus="no" imgType='normal' src='/static/img/2014_06_05_BSELL_61649_OD_010.JPG'>
-  </div>
-<script>
-  $(document).ready(function() {
-    clickedItems = []
-
-    $(window).load(function() {
-      IsoContainer = $('#mosaic-cont');
-      IsoContainer.isotope({
-        //layoutMode: 'masonry',
-        getSortData: {
-          fundus:'[fundus]',
-          imgType:'[imgType]'}
-      });
-       
-    $('#selectSort').on('click','button', function () {
-      console.log('blah')
-      IsoContainer.isotope({sortBy:$(this).attr('sortvalue')});
-    });
+  </br>
+  </br>
+  </br>
+  <script>
+    $(document).ready(function() {
     
-  IsoContainer.on('click','.mosaic', function() {
-    $( this ).toggleClass('mosaic2');
-    if (clickedItems.length + 1 > 2) {
-      clickedItems[0].toggleClass('mosaic2');
-      clickedItems.shift();
-      };
-    console.log(clickedItems);
-    clickedItems.push($(this));
-
-  });
+      $( "#imgList").PikaChoose({autoPlay : false});
+    });
+  </script>
+  {% set imgLoc = [
+  '/static/img/aligned/aligned_0_2014_06_30_BSELL_80311_OD_046_mapped.png',
+  '/static/img/aligned/aligned_1_OD_80311_2794_SLO_Raw_mapped.png',
+  '/static/img/aligned/aligned_2_2014_07_01_BSELL_80311_OD_004_mapped.png',
+  '/static/img/aligned/aligned_3_OD_80311_2802_SLO_Raw_mapped.png',
+  '/static/img/aligned/aligned_4_OD_80311_2822_SLO_Raw_mapped.png',
+  '/static/img/aligned/aligned_5_2014_07_10_BSELL_80311_OD_012_mapped.png'
+  ] -%}
   
-    });
+  <div class="row">
+    <div class="pikachoose">
+      <ul class="col-md-9" id='imgList'>
+      {% for path in imgLoc %}
+        <li><img src={{ path|escape }}></li>
+      {% endfor %}
+      </ul>
+    </div>
 
-  });
-</script>
-<button class="button" id="startReg">register</button>
-<script>
-    $('#startReg').on('click', function () {
-      if (clickedItems.length == 2) {
-        console.log(clickedItems[0]);
-      }
-    });
-</script>
+  </div>
 {% endblock body_content %}
