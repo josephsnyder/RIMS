@@ -1,5 +1,29 @@
-.mosaic { width: 25%; 
-        margin-bottom:5px}
-.mosaic2 { width: 25%;
+.mosaic{ width: 25%; 
+         margin-bottom:5px
+      }
+      
+.wfov{ width: 50%; 
+         margin-bottom:5px
+      }
+.compSelect {          outline: green solid thick;}
+.mosaic2{ width: 25%;
           outline: green solid thick;
-          margin-bottom:5px }
+          margin-bottom:5px;
+        }
+.selected{ outline : red solid thin;}
+
+.CDetect{ position: absolute;
+          width: 50%;
+          left : 0px;
+          top: 250px;
+          transition: opacity 1.5s ease-in-out;
+        }
+.CDetect2{ position: absolute;
+          width: 50%;
+          left : 750px;
+          top: 250px;
+          transition: opacity 1.5s ease-in-out;
+        }
+        
+.CDetect.transparent{ opacity : 0}
+.CDetect2.transparent{ opacity : 0}

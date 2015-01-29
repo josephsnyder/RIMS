@@ -32,22 +32,25 @@ class RIMSApp(flask.Flask):
     self.module_browse = BrowseMod(self)
     self.register_blueprint(self.module_browse)
     
-    from mods.imgImport import ImportMod
-    print ImportMod
-    self.module_import = ImportMod(self)
-    self.register_blueprint(self.module_import)
+    from mods.manage import ManageMod
+    self.module_manage = ManageMod(self)
+    self.register_blueprint(self.module_manage)
     
     from mods.login import LoginMod
     self.module_login = LoginMod(self)
     self.register_blueprint(self.module_login)
     
-    from mods.Review import ReviewMod
+    from mods.compare import CompareMod
+    self.module_compare = CompareMod(self)
+    self.register_blueprint(self.module_compare)
+    
+    from mods.review import ReviewMod
     self.module_review = ReviewMod(self)
     self.register_blueprint(self.module_review)
-    
-    from mods.Register import RegisterMod
-    self.module_register = RegisterMod(self)
-    self.register_blueprint(self.module_register)
+
+    from mods.analyze import AnalyzeMod
+    self.module_analyze = AnalyzeMod(self)
+    self.register_blueprint(self.module_analyze)
 
     #self._log.debug("Importing Search module")
     #from .mods.search import SearchMod

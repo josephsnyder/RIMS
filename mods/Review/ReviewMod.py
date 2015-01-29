@@ -5,10 +5,9 @@ import os.path as osp
 script_dir = osp.dirname(osp.abspath(__file__))
 
 class ReviewMod(flask.Blueprint):
-
   def __init__(self,parent_app):
     super(ReviewMod, self).__init__(
-            'Review', __name__,
+           'register', __name__,
             template_folder=osp.join(script_dir, 'templates')
         )
     @self.route('/review', methods=['get'])

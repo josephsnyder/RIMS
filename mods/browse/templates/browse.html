@@ -9,7 +9,7 @@
     $( "#pat_menu" ).menu ({
       select: function(event,data){
         $( "#pat_demograph" ).html("Info for patient: " +
-        event.toElement.innerText +"<br /><br /> Age:<br /><br />Address: <br /><br /> Date last image taken:<br />");
+        data.item[0].innerHTML +"<br /><br /> Age:<br /><br />Address: <br /><br /> Date last image taken:<br />");
         //this will eventually be pulled from a database to show recent info about patient
       }
     });
@@ -18,17 +18,21 @@
 </br>
 </br>
 <h1>Browse through patient listing</h1>
-<div class="row">
+</br>
+<dl>
+  <dt>Select a patient to access images</dt>
+</dl>
+<div class="row container-fluid">
 
   <ul class="col-md-2" id="pat_menu">
-    <li>Carter, David JR  </li>
+    <li>Carter, David Jr.</li>
     <li>Kane, Robert</li>
     <li>Smith, Carl</li>
     <li>Tully, Roberta</li>
   </ul>
   <label class="col-md-4" id="pat_demograph">Select Patient</script></label>
   <div class="col-md-4">
-    <button class="col-md-3">Select Patient</button>
+    <button class="col-md-3" onclick="location.href='/imgImport'">Select Patient</button>
     <div class="col-md-3"></div>
     <button class="col-md-3">Cancel</button>
   </div>

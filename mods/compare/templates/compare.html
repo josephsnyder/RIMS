@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% set active_page = "compare" %}
+
+{% block head_scripts %}
+  {{super()}}
+  <script type="text/javascript" src="static/js/canvasjs.min.js"></script>
+  <script type="text/javascript" src="static/js/twoface.js"></script>
+{% endblock head_scripts %}
+
+
+{% block body_content %}
+</br>
+</br>
+<h1>Comparison of Registered Images</h1>
+<br>
+<dl>
+  <dt>Comparison of two images:</dt>
+  <dd>Different image modalities</dd>
+  <dd>Captured on the same day</dd>
+</dl>
+<label>Day 1 Fundus : Day 1 HRT3</label>
+<div id="img_compare"  class="container-fluid"></div>     
+</br>
+</br>
+</br>
+</br>
+<dl>
+  <dt>Comparison of two images:</dt>
+    <dd>Same modality</dd>
+    <dd>Captured both before damage and 10 days after damage</dd>
+</dl>
+<label>Day 0 Fundus : Day 10 Fundus</label>
+<div id="img_compare2"  class="container-fluid"></div>     
+
+<script>
+var twoface = TwoFace("img_compare", 800,650);
+twoface.add("/static/img/aligned/Laser Day 1/Color Fundus/aligned_095_2014_07_01_BSELL_80311_OD_014_mapped_small.png");
+twoface.add("/static/img/aligned/Laser Day 1/HRT3/aligned_106_20140701_80311_Image_5_OD_mapped_small.png");
+
+var twoface2 = TwoFace("img_compare2", 800,650);
+twoface2.add("/static/img/aligned/Laser Day 0 - Pre/Fundus Images/aligned_043_2014_06_30_BSELL_80311_OD_002_mapped_small.png");
+twoface2.add("/static/img/aligned/Laser Day 10/Color Fundus/aligned_111_2014_07_10_BSELL_80311_OD_003_mapped_small.png");
+</script>
+
+{% endblock body_content %}

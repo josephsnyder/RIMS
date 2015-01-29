@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% set active_page = "analyze" %}
+
+{% block body_content %}
+</br>
+</br>
+<div class="row container-fluid">
+  <h2> Change Detection </h2>
+  <dl>
+    <dt>"Toggle Images" switches between the two images used as part of the detection</dd>
+    <dt>"Show Detected Changes" shows two things:</dd>
+    <dd>- Blue box represents the area that changes were detected in. Each red pixel represents a detected change</dd>
+  </dl>
+  <button class="col-md-1" id="flipbase">Toggle Image</button>
+  <button class="col-md-1" id="flip">Show Detected Changes</button>
+  <div class="col-md-4"></div>
+  <button class="col-md-1" id="flipbase2">Toggle Image</button>
+  <button class="col-md-1" id="flip2">Show Detected Changes</button>
+</div>
+
+<div>
+  <img class="CDetect" id="base1" src="static/img/change_detection/2/im2_15p.png">
+  <img class="CDetect transparent" id="base2" src="static/img/change_detection/2/im1_15p.png">
+  <img class="CDetect transparent" id="mask" src="static/img/change_detection/2/mask_p15_bbox-alpha.png">
+  
+</div>
+
+<div>
+  <img class="CDetect2" id="base3" src="static/img/change_detection/3/im2_15p.png">
+  <img class="CDetect2 transparent" id="base4" src="static/img/change_detection/3/im1_15p.png">
+  <img class="CDetect2 transparent" id="mask2" src="static/img/change_detection/3/mask_p15_bbox-alpha.png">
+  
+</div>
+<script>
+    $(document).ready(function() {
+    
+      $('#flip').on('click', function () {
+        $('#mask').toggleClass('transparent');
+      });
+      $('#flipbase').on('click', function () {
+        $('#base2').toggleClass('transparent');
+        $('#base1').toggleClass('transparent');
+      });
+
+      $('#flip2').on('click', function () {
+        $('#mask2').toggleClass('transparent');
+      });
+      $('#flipbase2').on('click', function () {
+        $('#base4').toggleClass('transparent');
+        $('#base3').toggleClass('transparent');
+      });        
+    });
+</script>
+{% endblock body_content %}

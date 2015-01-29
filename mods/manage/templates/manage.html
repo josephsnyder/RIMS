@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% set active_page = "manage" %}
+
+{% block head_scripts %}
+  {{super()}}
+  <script type="text/javascript" src="static/js/isotope.pkgd.min.js"></script>
+  <script type="text/javascript" src="static/js/flow.js"></script>
+  <script type="text/javascript" src="static/js/flow.min.js"></script>
+{% endblock head_scripts %}
+
+{% block body_content %}
+</br>
+</br>
+</br>
+<h3>Image Upload</h3>
+</br>
+<p>Upload new images and select  </p>
+<div class='row container-fluid' id="selectSort">
+  <div class='button-group' data-filter-group='imgType'>
+    <button class="button col-md-1" sortvalue=".fundus">Fundus Filter</button>
+    <button class="button col-md-1" sortvalue=".spectralis">Spectralis Filter</button>
+    <button class="button col-md-1" sortvalue=".HSI">Hyperspectral Filter</button>
+    <button class="button col-md-1" sortvalue=".HRT3">HRT3 Filter</button>
+    <button class="button col-md-1 selected all" sortvalue="">All</button>
+  </div>
+  <div class="col-md-1"></div>
+  <div class='button-group' data-filter-group='date'>
+    <button class="button col-md-1" sortvalue=".6302014">Jun 30, 2014</button>
+    <button class="button col-md-1" sortvalue=".712014">Jul 1, 2014</button>
+    <button class="button col-md-1" sortvalue=".7102014">Jul 10, 2014</button>
+    <button class="button col-md-1 selected all" sortvalue="">All</button>
+  </div>
+  <div class="col-md-1"></div>
+  <button class="button col-md-1" id="Clear" sortvalue="*">Clear</button>
+</div>
+</br>
+</br>
+<button class="col-md-2" id="img_impt">Import Image</button>
+<div class="col-md-2"></div>
+<button class="col-md-2" id="img_impt" onclick="location.href='/review'">Register Images</button>
+</br>
+</br>
+<script>
+    $('#startReg').on('click', function () {
+      if (clickedItems.length == 2) {
+        console.log("Attempting to register: " + clickedItems[0] + " and " + clickedItems[0] );
+      }
+    });
+    
+    $(document).ready(function() {
+      
+      //all of the below code lovingly stolen from the MASIR crew
+      var flow = new Flow({
+        target: '_upload',
+        // 1 for serial debugging, may be higher for production
+        simultaneousUploads: 1
+      });
+      if (!flow.support)
+      {
+          alert_error("Flow is not supported in current browser");
+          return;
+      }
+
+      flow.assignBrowse($("#img_impt"),false,true);
+      
+      flow.on("error", function(message, file) {
+              alert_error("[Flow] ERROR: (" + file.name + ") " + message);
+              return true;
+      });
+      
+      //flow.on("filesSubmitted", function(array, event) {
+          //alert_info("[Flow] Uploading files");
+      //    flow.upload();
+      //});
+
+      flow.on("fileSuccess", function (file, message) {
+          alert_success("[Flow] Success uploading file '" + file.name + ": "
+                  + message);
+          delete ffid_fpi_map[file.uniqueIdentifier];
+      });
+
+      flow.on("fileError", function(file, message) {
+          alert_error("[Flow] Error uploading file '" + file.name + ": "
+                  + message);
+          delete ffid_fpi_map[file.uniqueIdentifier];
+      });
+      //$( "#img_impt" ).click(function() {
+      // flow.
+      //});
+    });
+  </script>
+</div>
+
+</br>
+<div id="mosaic-cont">
+  <img class="mosaic 6302014 fundus" src="static/img/original/Laser Day 0 - Pre/Color Fundus/2014_06_30_BSELL_80311_OD_002.JPG">
+  <img class="mosaic 6302014 fundus" src="static/img/original/Laser Day 0 - Pre/Color Fundus/2014_06_30_BSELL_80311_OD_009.JPG">
+  <img class="mosaic 6302014 spectralis" src="static/img/original/Laser Day 0 - Pre/Spectralis/FAF/OD_80311_2790_SLO_Raw.png">
+  <img class="mosaic 6302014 spectralis" src="static/img/original/Laser Day 0 - Pre/Spectralis/IR/OD_80311_2789_SLO_Raw.png">
+  <img class="mosaic 712014 fundus" src="static/img/original/Laser Day 1/Color Fundus/2014_07_01_BSELL_80311_OD_003.JPG">
+  <img class="mosaic 712014 fundus" src="static/img/original/Laser Day 1/Color Fundus/2014_07_01_BSELL_80311_OD_010.JPG">
+  <img class="mosaic 712014 fundus" src="static/img/original/Laser Day 1/Color Fundus/2014_07_01_BSELL_80311_OD_014.JPG">
+  <img class="mosaic 712014 HRT3" src="static/img/original/Laser Day 1/HRT3/20140701_80311_Image_5_OD.bmp">
+  <img class="mosaic 712014 HRT3" src="static/img/original/Laser Day 1/HRT3/20140701_80311_Image_7_OD.bmp">
+  <img class="mosaic 712014 HSI" src="static/img/original/Laser Day 1/HSI/140701_80311_Run1_622_nm_1_62.jpg">
+  <img class="mosaic 712014 spectralis" src="static/img/original/Laser Day 1/Spectralis/FAF/OD_80311_2802_SLO_Raw.png">
+  <img class="mosaic 712014 spectralis" src="static/img/original/Laser Day 1/Spectralis/IR/OD_80311_2801_SLO_Raw.png">
+  <img class="mosaic 7102014 fundus" src="static/img/original/Laser Day 10/Color Fundus/2014_07_10_BSELL_80311_OD_003.PNG">
+  <img class="mosaic 7102014 fundus" src="static/img/original/Laser Day 10/Color Fundus/2014_07_10_BSELL_80311_OD_007.JPG">
+  <img class="mosaic 7102014 HRT3" src="static/img/original/Laser Day 10/HRT3/20140710_80311_Image_13_OD.bmp">
+  <img class="mosaic 7102014 HRT3" src="static/img/original/Laser Day 10/HRT3/20140710_80311_Image_15_OD.bmp">
+  <img class="mosaic 7102014 spectralis" src="static/img/original/Laser Day 10/Spectralis/FAF/OD_80311_2822_SLO_Raw.png">
+  <img class="mosaic 7102014 spectralis" src="static/img/original/Laser Day 10/Spectralis/IR/OD_80311_2821_SLO_Raw.png">
+</div>
+<script>
+  oldsort='*';
+
+  $(document).ready(function() {
+    clickedItems = [];
+    var filters=[];
+    
+    $(window).load(function() {
+
+      IsoContainer = $('#mosaic-cont');
+      IsoContainer.isotope({
+        layoutMode: 'masonry',
+        masonry : {"gutter":5},
+      });
+       
+      $('#selectSort').on('click','.button', function () {
+        if ($(this).attr('id')=='Clear'){
+          filters['imgType']='';
+          filters['date']='';
+          buttonGroup = $($(this)[0].parentElement).find('.button-group');
+          $(buttonGroup).find('.selected').removeClass('selected');
+          $(buttonGroup).find('.all').addClass('selected');
+        }
+        else {
+          var buttonGroup = $(this)[0].parentElement;
+          var filterType = $(buttonGroup).attr('data-filter-group');
+          $(buttonGroup).find('.selected').removeClass('selected');
+          $(this).addClass('selected');
+          filters[ filterType ] = $(this).attr('sortvalue');
+        }
+        var filterValue = '';
+        for ( var prop in filters ) {
+          filterValue += filters[ prop ];
+        }
+      IsoContainer.isotope({ filter: filterValue });
+      });
+   
+      IsoContainer.on('click','.mosaic', function() {
+        $( this ).toggleClass('mosaic2');
+        /*if (clickedItems.length + 1 > 2) {
+          clickedItems[0].toggleClass('mosaic2');
+          clickedItems.shift();
+          };
+        clickedItems.push($(this));
+    */
+      });
+    });
+
+  });
+</script>
+
+{% endblock body_content %}
