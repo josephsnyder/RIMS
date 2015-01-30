@@ -63,5 +63,13 @@ class RIMSApp(flask.Flask):
 
 if __name__ == '__main__':
     from RIMSApp import RIMSApp
-    blah = RIMSApp(None)
-    blah.run(host='0.0.0.0')
+    import argparse
+    App = RIMSApp(None)
+    parser = argparse.ArgumentParser(description='Start the listener for the demo RIMS app')
+    parser.add_argument('-server', required=False, dest='hServer', default='0.0.0.0',
+                        help='Hostname to listen on. Default is 0.0.0.0 ')
+    parser.add_argument('-port', required=False, dest='hPort', default=5000, type=int,
+                        help='Port number of host to listen on.  Default is 5000')
+    result = vars(parser.parse_args())
+    print result
+    App.run(host=result['hServer'], port = result['hPort'])
