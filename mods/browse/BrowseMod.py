@@ -2,6 +2,10 @@ import flask
 import os
 import os.path as osp
 
+import sys
+
+sys.path.append("../../..")
+from RIMSAuth import requires_auth
 script_dir = osp.dirname(osp.abspath(__file__))
 
 class BrowseMod(flask.Blueprint):
@@ -12,6 +16,7 @@ class BrowseMod(flask.Blueprint):
             template_folder=osp.join(script_dir, 'templates')
         )
     @self.route('/browse', methods=['get'])
+    @requires_auth
     def login():
     # Render the login page, then continue on to a previously requested
     # page, or the home page.
