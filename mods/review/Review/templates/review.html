@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% set active_page = "review" %}
+
+{% block head_scripts %}
+  {{super()}}
+  <script type="text/javascript" src="static/js/jquery.jcarousel.min.js"></script>
+  <script type="text/javascript" src="static/js/jquery.pikachoose.js"></script>
+  <script type="text/javascript" src="static/js/jquery.pikachoose.min.js"></script>
+  <script type="text/javascript" src="static/js/jquery.touchwipe.min.js"></script>
+  <script type="text/javascript" src="static/js/flow.js"></script>
+  <script type="text/javascript" src="static/js/flow.min.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="static/css/simple.css"/>
+
+{% endblock head_scripts %}
+
+{% block body_content%}
+  </br>
+  </br>
+  <h3>Image Review</h3>
+  </br>
+  <p>Browse the result of the registration of the previously selected images</p>
+  </br>
+  </br>
+  <script>
+    $(document).ready(function() {
+    
+      $( "#imgList").PikaChoose({autoPlay : false});
+    });
+  </script>
+  {% set imgLoc = [
+  '"/static/img/aligned/Laser Day 0 - Pre/Fundus Images/aligned_043_2014_06_30_BSELL_80311_OD_002_mapped.png"',
+  '"/static/img/aligned/Laser Day 0 - Pre/Fundus Images/aligned_050_2014_06_30_BSELL_80311_OD_009_mapped.png"',
+  '"/static/img/aligned/Laser Day 0 - Pre/Spectralis/aligned_057_OD_80311_2790_SLO_Raw_mapped.png"',
+  '"/static/img/aligned/Laser Day 0 - Pre/Spectralis/aligned_060_OD_80311_2789_SLO_Raw_mapped.png"',
+  '"/static/img/aligned/Laser Day 1/Color Fundus/aligned_084_2014_07_01_BSELL_80311_OD_003_mapped.png"',
+  '"/static/img/aligned/Laser Day 1/Color Fundus/aligned_091_2014_07_01_BSELL_80311_OD_010_mapped.png"',
+  '"/static/img/aligned/Laser Day 1/Color Fundus/aligned_095_2014_07_01_BSELL_80311_OD_014_mapped.png"',
+  '"/static/img/aligned/Laser Day 1/HRT3/aligned_106_20140701_80311_Image_5_OD_mapped.png"',
+  '"/static/img/aligned/Laser Day 1/HRT3/aligned_108_20140701_80311_Image_7_OD_mapped.png"',
+  '"/static/img/aligned/Laser Day 1/Spectralis/aligned_101_OD_80311_2802_SLO_Raw_mapped.png"',
+  '"/static/img/aligned/Laser Day 1/Spectralis/aligned_104_OD_80311_2801_SLO_Raw_mapped.png"',
+  '"/static/img/aligned/Laser Day 10/Color Fundus/aligned_111_2014_07_10_BSELL_80311_OD_003_mapped.png"',
+  '"/static/img/aligned/Laser Day 10/Color Fundus/aligned_115_2014_07_10_BSELL_80311_OD_007_mapped.png"',
+  '"/static/img/aligned/Laser Day 10/HRT3/aligned_132_20140710_80311_Image_13_OD_mapped.png"',
+  '"/static/img/aligned/Laser Day 10/HRT3/aligned_134_20140710_80311_Image_15_OD_mapped.png"',
+  '"/static/img/aligned/Laser Day 10/Spectralis/aligned_126_OD_80311_2822_SLO_Raw_mapped.png"',
+  '"/static/img/aligned/Laser Day 10/Spectralis/aligned_129_OD_80311_2821_SLO_Raw_mapped.png"',
+  ] -%}
+  
+  <div class="row">
+    <div class="pikachoose">
+      <ul class="col-md-9" id='imgList'>
+      {% for path in imgLoc %}
+        <li><img src={{ path|safe }}></li>
+      {% endfor %}
+      </ul>
+    </div>
+<button class="col-md-2" id="img_compare" onclick="location.href='/compare'">Compare Images</button>
+<button class="col-md-2" id="img_analyze" onclick="location.href='/analyze'">Analyze Images</button>
+<script>
+  $(document).ready(function() {    
+    clickedItems = [];
+    $(window).load(function() {
+      $('#imgList').on('click','.clip', function() {
+        $( this ).toggleClass('compSelect');
+        if (clickedItems.length + 1 > 2) {
+          clickedItems[0].toggleClass('compSelect');
+          clickedItems.shift();
+          };
+        clickedItems.push($(this));
+      });
+    });
+  });
+        
+</script>
+  </div>
+{% endblock body_content %}
