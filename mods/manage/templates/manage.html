@@ -16,6 +16,7 @@
 </br>
 <p>Upload new images and select a series of images to be registered.</p>
 <div class='row container-fluid' id="selectSort">
+  <label class="col-md-1">Image Type</label>
   <div class='button-group' data-filter-group='imgType'>
     <button class="button col-md-1" sortvalue=".fundus">Fundus Filter</button>
     <button class="button col-md-1" sortvalue=".spectralis">Spectralis Filter</button>
@@ -23,21 +24,59 @@
     <button class="button col-md-1" sortvalue=".HRT3">HRT3 Filter</button>
     <button class="button col-md-1 selected all" sortvalue="">All</button>
   </div>
-  <div class="col-md-1"></div>
+  
+  <label class="col-md-1">Date</label>
   <div class='button-group' data-filter-group='date'>
     <button class="button col-md-1" sortvalue=".6302014">Jun 30, 2014</button>
     <button class="button col-md-1" sortvalue=".712014">Jul 1, 2014</button>
     <button class="button col-md-1" sortvalue=".7102014">Jul 10, 2014</button>
     <button class="button col-md-1 selected all" sortvalue="">All</button>
   </div>
-  <div class="col-md-1"></div>
-  <button class="button col-md-1" id="Clear" sortvalue="*">Clear</button>
 </div>
+<br>
+<button class="button col-md-1" id="Clear" sortvalue="*">Clear Filters</button>
 </br>
+
+</br>
+<div class="modal proc_data container-fluid" role='dialog'>
+  <h3> Processing Parameters </h3>
+  <br>
+  <label >Processing Algorithm: </label>
+  <select>
+    <option>Registration</option>
+    <option>Annotation</option>
+    <option>Preprocess</option>
+  </select>
+  <br>
+  <br>
+  <label>Number of Bins: </label>
+  <input type="text" >
+  <br>
+  <label >Kernel Width: </label>
+  <input type="text">
+  <br>
+  <br>
+  <button onclick="location.href='/review'">Start Processing</button>
+  <button data-dismiss="modal">Cancel</button>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+
+<div class="modal img_prov container-fluid" role='dialog'>
+  <img src="static/img/image_provenance.png" alt="ImageProvenance Graph" style="width:900px;">
+  <button data-dismiss="modal">Dismiss</button>
+</div>
+
 </br>
 <button class="col-md-2" id="img_impt">Import Image</button>
 <div class="col-md-2"></div>
-<button class="col-md-2" id="img_impt" onclick="location.href='/review'">Register Images</button>
+<button class="col-md-2" id="img_hist" data-toggle="modal" data-target='.img_prov'>View History</button>
+<div class="col-md-2"></div>
+<button class="col-md-2" id="img_proc" data-toggle="modal" data-target='.proc_data'>Process Images</button>  <!--onclick="location.href='/review'" -->
 </br>
 </br>
 <script>

@@ -27,3 +27,16 @@
         
 .CDetect.transparent{ opacity : 0}
 .CDetect2.transparent{ opacity : 0}
+
+
+.modal{
+  position: relative;
+  background: #fff;
+  /*top: 250px;
+  left: -300px;*/
+  width:1000px;
+  
+}
+.modal-open{
+  overflow: auto;
+}

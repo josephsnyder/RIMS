@@ -4,16 +4,45 @@
 </br>
 </br>
 </br>
-<h2> Log in to the Retinal Image Management System (RIMS)</h2>
-<div class="row">
+<h2>Log in to the Retinal Image Management System (RIMS)</h2>
+<div class="row container-fluid">
   <label class="col-md-2">Username: </label>
   <input type="text" class="col-md-2">
   <label class="col-md-2">Password: </label>
   <input type="password" class="col-md-2">
-  <div class="row">
+  <div class="row container-fluid">
     <div class="col-md-1"></div>
     <input type="submit" class="col-md-1">
     <button class="col-md-1">Cancel</button>
+    <div class="row container-fluid">
+      <a data-toggle="modal" data-target='.add_pat' class="col-md-2">Register an Account</a>
+    </div>
+  </div>
+  <div class="modal add_pat container-fluid" id='add_pat_popup' role='dialog'>
+    <h2> Register User </h2>
+    <br>
+    
+    <label>Contact Information:</label></br>
+    <label>Full Name:</label>
+    <input type="text" ></br>
+    <label>Email Address:</label>
+    <input type="email" ></br>
+    <label>Phone Number:</label>
+    <input type="text" ></br></br>
+    
+    <label>Login Information:</label></br>
+    <label>Desired Username:</label>
+    <input type="text" ></br>
+    <label>Desired Password:</label>
+    <input type="password" ></br>
+    <label>Confirm Password:</label>
+    <input type="password" >
+    <br>
+    <br>
+    <button>Register</button>
+    <button data-dismiss="modal">Cancel</button>
+    <br>
+    <br>
   </div>
 </div>
 {% endblock body_content %}
